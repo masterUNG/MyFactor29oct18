@@ -8,11 +8,28 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-//    Explicit
+    //    Explicit
     var numberString: String = ""
     var mainNumberInts = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+    var answerStrings = [String]()
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return mainNumberInts.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "answerCell")
+        cell.textLabel?.text = String(mainNumberInts[indexPath.row])
+        return cell
+        
+    }
+    
+    
+
     
     
 
@@ -24,12 +41,14 @@ class ViewController: UIViewController {
     
     @IBAction func calculateButton(_ sender: Any) {
         
+        mainNumberInts.append(16)
+        
 //        Get Value From TextField
         numberString = numberTextField.text!
         print("numberString ==> \(numberString)")
         
 //        Calculate
-        var answerStrings = [String]()
+        
         var answerInt = 0
         var resultString = ""
         
